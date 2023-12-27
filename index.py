@@ -15,7 +15,7 @@ if uploaded_file:
 
     elif fileName.endswith("xlsx"):
 
-        df = pd.read_excel(uploaded_file)
+        df = pd.read_excel(uploaded_file, engine='openpyxl')
 
     st.write("### Uploaded CSV File:")
     
