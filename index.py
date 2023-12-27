@@ -38,7 +38,7 @@ tabla1 = {
 
 Tabla1 = pd.DataFrame(tabla1)
 
-st.table(Tabla1)
+# st.table(Tabla1)
 
 if uploaded_file:
 
