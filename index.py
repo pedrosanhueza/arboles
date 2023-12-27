@@ -12,3 +12,9 @@ if uploaded_file:
     st.write(df)
 
     st.write(uploaded_file.name)
+
+    df[df.columns[0]].sum()
+
+    df[df.columns[0]].sum()
+    
+    df[df.columns[0]].sum()
