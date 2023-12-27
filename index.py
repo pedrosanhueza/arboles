@@ -13,7 +13,7 @@ df = pd.DataFrame(sample_data)
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
 lai = st.slider(
-    "Leaf area index (LAI)"
+    "Leaf area index (LAI)",
     min_value=0,
     max_value=10,
     value=0.15,
