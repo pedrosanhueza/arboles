@@ -26,6 +26,8 @@ df[df.columns[2]] = df[df.columns[2]].astype(str)
 
 df[df.columns[2]] = df[df.columns[2]].apply(lambda x: x.replace(",","."))
 
+df[df.columns[2]] = df[df.columns[2]].astype(float)
+
 st.write(f'''
 
 {df[df.columns[1]].sum()}
