@@ -14,8 +14,8 @@ uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
 lai = st.slider(
     "Leaf area index (LAI)",
-    min_value=0,
-    max_value=10,
+    min_value=0.0,
+    max_value=10.0,
     value=0.15,
     step=1
 )
