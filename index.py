@@ -22,7 +22,7 @@ if uploaded_file:
 
     st.write(uploaded_file.name)
 
-df[df.columns[2]] = df[df.columns[2]].replace(",",".")
+df[df.columns[2]] = df[df.columns[2]].apply(lambda x: x.replace(",","."))
 
 st.write(f'''
 
