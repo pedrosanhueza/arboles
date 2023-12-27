@@ -12,6 +12,14 @@ df = pd.DataFrame(sample_data)
 
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
+lai = st.slider(
+    "Leaf area index (LAI)"
+    min_value=0,
+    max_value=10,
+    value=0.15,
+    step=0.05
+)
+
 if uploaded_file:
 
     df = pd.read_csv(uploaded_file)
@@ -22,18 +30,11 @@ if uploaded_file:
 
     st.write(uploaded_file.name)
 
+# Replace commmas to dots for "Velocidad del viento (m/s)" column
+    
 df[df.columns[2]] = df[df.columns[2]].astype(str)
 
 df[df.columns[2]] = df[df.columns[2]].apply(lambda x: x.replace(",","."))
 
 df[df.columns[2]] = df[df.columns[2]].astype(float)
 
-st.write(f'''
-
-{df[df.columns[1]].sum()}
-
-{df[df.columns[2]].sum()}
-
-{df[df.columns[3]].sum()}
-
-''')
