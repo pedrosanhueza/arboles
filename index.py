@@ -17,7 +17,7 @@ lai = st.slider(
     min_value=0,
     max_value=10,
     value=0.15,
-    step=0.05
+    step=1
 )
 
 if uploaded_file:
