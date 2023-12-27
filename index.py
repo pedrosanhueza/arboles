@@ -11,9 +11,9 @@ if uploaded_file:
 
     st.write(df)
 
-    st.write(uploaded_file.name)
+    # st.write(uploaded_file.name)
 
-    print(f'''
+    st.write(f'''
     {df[df.columns[1]].sum()}
 
     {df[df.columns[2]].sum()}
