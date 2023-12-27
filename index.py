@@ -63,7 +63,7 @@ uploaded_file = st.file_uploader("Choose an Excel file", type=["xlsx"])
 
 if uploaded_file is not None:
     # Read Excel file into a DataFrame
-    df = pd.read_excel(uploaded_file)
+    df = pd.read_excel(uploaded_file, engine='openpyxl')
 
     # Display the DataFrame
     st.dataframe(df)
