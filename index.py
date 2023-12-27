@@ -13,8 +13,10 @@ if uploaded_file:
 
     st.write(uploaded_file.name)
 
-    df[df.columns[1]].sum()
+    print(f'''
+    {df[df.columns[1]].sum()}
 
-    df[df.columns[2]].sum()
+    {df[df.columns[2]].sum()}
     
-    df[df.columns[3]].sum()
+    {df[df.columns[3]].sum()}
+    ''')
