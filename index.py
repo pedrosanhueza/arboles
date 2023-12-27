@@ -20,6 +20,14 @@ lai = st.slider(
     step=0.01  # Use a smaller step for decimal values
 )
 
+Superfice = st.slider(
+    "Porcentage de la superficie cubierta con la vegetacion",
+    min_value=0.0,
+    max_value=100.0,
+    value=0.5,
+    step=0.01  # Use a smaller step for decimal values
+)
+
 tabla1 = {
     'Velocidad viento (m/s)': [0, 0.03, 0.09, 0.15, 0.17, 0.19, 0.2, 0.56, 0.92, 0.92, 2.11, 2.11, 2.11, 2.11],
     'Promedio': [0, 0.006, 0.012, 0.018, 0.022, 0.025, 0.029, 0.056, 0.082, 0.082, 0.57, 0.57, 0.57, 0.57],
