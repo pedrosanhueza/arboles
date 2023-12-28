@@ -12,15 +12,15 @@ df = pd.DataFrame(sample_data)
 
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
-lai = st.text_input("Leaf area index (LAI)👇","1.5")
+col1, col2 = st.columns(2)
 
-Superfice = st.slider(
-    "Porcentage de la superficie cubierta con la vegetacion",
-    min_value=0.0,
-    max_value=100.0,
-    value=0.5,
-    step=0.01  # Use a smaller step for decimal values
-)
+with col1:
+
+    lai = st.text_input("Leaf area index (LAI)👇","1.5")
+
+with col2:
+
+    superficie = st.text_input("Porcentage de la superficie cubierta con la vegetacion👇","5.0")
 
 tabla1 = {
     'Velocidad viento (m/s)': [0, 0.03, 0.09, 0.15, 0.17, 0.19, 0.2, 0.56, 0.92, 0.92, 2.11, 2.11, 2.11, 2.11],
