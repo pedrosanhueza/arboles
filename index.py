@@ -10,6 +10,8 @@ sample_data = {
 
 df = pd.DataFrame(sample_data)
 
+st.title("Planilla I-tree Candelaria")
+
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
 col1, col2 = st.columns(2)
