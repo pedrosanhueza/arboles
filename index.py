@@ -27,11 +27,7 @@ with st.sidebar:
     
     lai = st.number_input('Leaf area index (LAI)', value=0.15)
     
-    st.write('Índice de área foliar: ', lai)
-
     tc = st.number_input('Porcentaje de superficie cubierta', value=5)
-    
-    st.write('Porcentaje de superficie cubierta: ', tc, "%")
 
 col1, col2 = st.columns(2)
 col1.metric("Leaf area index", lai)
