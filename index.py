@@ -25,7 +25,7 @@ if uploaded_file:
 
 with st.sidebar:
     
-    lai = st.number_input('Leaf area index (LAI)')
+    lai = st.number_input('Leaf area index (LAI)', value=0.15)
     
     st.write('El índice de área foliar es ', lai)
 
