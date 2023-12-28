@@ -5,4 +5,4 @@ uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=Tru
 
 if uploaded_files:
     
-    df = pd.read_excel(uploaded_files )
+    df = pd.read_csv(uploaded_files)
