@@ -4,15 +4,10 @@ import pandas as pd
 uploadedFile = st.file_uploader("fileUploadLabel", type=['csv','xlsx'])
 
 if uploadedFile:
-    
-    st.write(uploadedFile.name)
-
-    st.table(uploadedFile)
-
-    st.write(uploadedFile)
-
-    df = pd.read_excel(uploadedFile)
-
-    st.table(df)
-
-    st.write(df)
+    try:
+        bytesData = uploadedFile.getvalue()
+        encoding = encodingUTF8 
+        s=str(bytesData,encoding)
+        result = StringIO(s) 
+    except:
+        st.write("pass")
