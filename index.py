@@ -33,4 +33,5 @@ if uploaded_file:
 
 if uploaded_file:
     
-    st.table(df)
+    st.write("Raw data")
+    st.dataframe(df)
