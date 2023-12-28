@@ -17,7 +17,7 @@ if uploaded_file:
 
         st.write("csv")
     
-        df = pd.read_excel(uploaded_file)
+        df = pd.read_csv(uploaded_file)
 
     else:
 
