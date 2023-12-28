@@ -15,22 +15,22 @@ col2.metric("Superficie Cubierta" , f"{tc}%")
 
 uploaded_file = st.file_uploader("",type=['csv', 'xlsx'])
 
-# if uploaded_file:
-
-fileName = uploaded_file.name    
-
-if fileName.endswith("xlsx"):
-
-    df = pd.read_excel(uploaded_file)
-
-elif fileName.endswith("csv"):
-
-    df = pd.read_csv(uploaded_file)
-
-else:
-
-    st.warning('Error in file upload', icon="⚠️")
-
 if uploaded_file:
 
+    fileName = uploaded_file.name    
+
+    if fileName.endswith("xlsx"):
+
+        df = pd.read_excel(uploaded_file)
+
+    elif fileName.endswith("csv"):
+
+        df = pd.read_csv(uploaded_file)
+
+    else:
+
+        st.warning('Error in file upload', icon="⚠️")
+
+if uploaded_file:
+    
     st.table(df)
