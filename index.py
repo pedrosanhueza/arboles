@@ -1,12 +1,16 @@
-import pandas as pd
 import streamlit as st
+import pandas as pd
 
 uploaded_file = st.file_uploader("Upload a file", type=['csv', 'xlsx'])
 
-if uploaded_file:
+if uploaded_file.name.endswith("xlsx"):
     
-    st.write(uploaded_file.name)
-
     df = pd.read_excel(uploaded_file)
 
-    st.table(df)
+elif uploaded_file.name.endswith("csv"):
+
+    df = pd.read_csv(uploaded_file)
+
+if uploaded_file:
+
+    st.table(uploaded_file)
