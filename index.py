@@ -39,7 +39,7 @@ if uploaded_file:
         st.dataframe(df)
 
         st.write("Step 2: Round 'Velocidad viento' column")
-        df[df.columns[2]] = df[df.columns[2]].apply(lambda x: float(x.replace(",","."))).round()
+        df['Velocidad del viento (m/s)'] = df['Velocidad del viento (m/s)'].apply(lambda x: float(x.replace(",","."))).round()
         st.dataframe(df)
 
         st.write("Step 3: Build reference table")
