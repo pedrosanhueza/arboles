@@ -32,3 +32,7 @@ with st.sidebar:
     tc = st.number_input('Porcentaje de superficie cubierta', value=5)
     
     st.write('Porcentaje de superficie cubierta: ', tc, "%")
+
+col1, col2 = st.columns(2)
+col1.metric("LAI", f"{lai} m2/m2")
+col2.metric("Superficie Cubierta" , tc)
