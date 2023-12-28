@@ -95,4 +95,4 @@ if uploaded_file:
         resuspension['Rmin (g/m2*h)']   = ( resuspension['At min (g/m2*h)'].shift(1) + resuspension['fmin,t (g/m2*h)'] ) * resuspension['% Resuspensión'] / 100
         resuspension['At min (g/m2*h)'] = resuspension['At min (g/m2*h)'].shift(1) + resuspension['fmin,t (g/m2*h)'] - resuspension['Rmin (g/m2*h)']
 
-        st.dataframe(resuspension.style.format(precision=7))
+        st.dataframe(resuspension.style.format(precision=12))
