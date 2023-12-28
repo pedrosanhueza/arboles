@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from openpyxl import load_workbook
 
 sample_data = {
     'Fecha': ['1/1/22 0:00', '1/1/22 1:00', '1/1/22 2:00'],
