@@ -78,5 +78,16 @@ if uploaded_file:
         flux["ft (g/m2*h)"]     = flux['MP2,5 (g/m³)'] * flux["Vd (m/s)"] * 3600
         st.dataframe(flux.style.format(precision=7))
 
-        st.write("Step 8: ")
+        st.write('Step 8: New calculated table "Resuspencion"')
         resuspension = pd.DataFrame()
+        resuspension['Fecha']           = df['Fecha']
+        resuspension['% Resuspensión']  = df['% Resuspensión']
+        resuspension['fmin,t (g/m2*h)'] = flux["fmin,t (g/m2*h)"]
+        resuspension['fmax,t (g/m2*h)'] = flux["fmax,t (g/m2*h)"]
+        resuspension['ft (g/m2*h)']     = flux["ft (g/m2*h)"]
+        resuspension['At min (g/m2*h)'] = resuspension['At min (g/m2*h)'].shift(1) + resuspension['fmin,t (g/m2*h)'] - resuspension['Rmin (g/m2*h)']
+        # resuspension['At max (g/m2*h)'] = 0
+        # resuspension['At (g/m2*h)']     = 0
+        resuspension['Rmin (g/m2*h)']   = ( resuspension['At min (g/m2*h)'].shift(1) + resuspension['fmin,t (g/m2*h)'] ) * resuspension['% Resuspensión'] / 100
+        # resuspension['Rmax (g/m2*h)']   = 0
+        # resuspension['Rt (g/m2*h)']     = 0
