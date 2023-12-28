@@ -3,7 +3,7 @@ import pandas as pd
 
 st.title("I-tree Candelaria")
 
-uploaded_file = st.file_uploader(type=['csv', 'xlsx'])
+uploaded_file = st.file_uploader("",type=['csv', 'xlsx'])
 
 if uploaded_file:
 
