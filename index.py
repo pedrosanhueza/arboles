@@ -53,7 +53,7 @@ df[df.columns[2]] = df[df.columns[2]].apply(lambda x: x.replace(",","."))
 df[df.columns[2]] = df[df.columns[2]].astype(float)
 
     # Upload Excel file through Streamlit
-uploaded_file = st.file_uploader("Choose an Excel file", type=["xlsx"])
+uploaded_file = st.file_uploader("Choose an Excel file", type=["xlsx"], sheet_name= "Planilla I-tree Candelaria")
 
 if uploaded_file is not None:
     # Read Excel file into a DataFrame
