@@ -35,10 +35,10 @@ if uploaded_file:
 
     with st.expander("See explanation"):
     
-        st.write("Raw data")
+        st.write("Step 1: Get raw data")
         st.dataframe(df)
 
-        st.write("Reference table")
+        st.write("Step 2: Build reference table")
         table1 = {
             'Velocidad viento (m/s)': [0, 0.03, 0.09, 0.15, 0.17, 0.19, 0.2, 0.56, 0.92, 0.92, 2.11, 2.11, 2.11, 2.11],
             'Promedio': [0, 0.006, 0.012, 0.018, 0.022, 0.025, 0.029, 0.056, 0.082, 0.082, 0.57, 0.57, 0.57, 0.57],
@@ -49,5 +49,10 @@ if uploaded_file:
         reference_table = pd.DataFrame(table1)
         st.dataframe(reference_table)
 
-        st.write("Vlookup merged")
-        
+        st.write("Step 3: Round 'Velocidad viento' column")
+        df[df.columns[2]] = df[df.columns[2]].apply(lambda x: float(x.replace(",","."))).round()
+        st.dataframe(df)
+
+        st.write("Step 4: Merged tables")
+        # tables_merged = pd.merge(df, table1, on='ID', how='left')
+        # st.dataframe(tables_merged)
