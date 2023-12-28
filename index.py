@@ -9,18 +9,24 @@ if uploaded_file:
     
     if fileName.endswith("xlsx"):
 
-        st.write("xlsx")
-
         df = pd.read_excel(uploaded_file)
 
     elif fileName.endswith("csv"):
-
-        st.write("csv")
     
         df = pd.read_csv(uploaded_file)
 
     else:
 
-        st.warning('File needs to be CSV or XLSX', icon="⚠️")
+        st.warning('Error in file upload', icon="⚠️")
     
     st.table(df)
+
+with st.sidebar:
+    
+    lai = st.number_input('Leaf area index (LAI)')
+    
+    st.write('El índice de área foliar es ', lai)
+
+    tc = st.number_input('Porcentage de superficie cubierta')
+    
+    st.write('El porcentage de superficie cubierta es ', tc)
