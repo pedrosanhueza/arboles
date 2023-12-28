@@ -60,3 +60,10 @@ if uploaded_file:
         st.write("Step 5: Add LAI column")
         df['LAI (m2/m2)'] = lai
         st.dataframe(df)
+
+        st.write('Step 6: add columns "Vd,min (cm/s)" and "Vd,max (cm/s)" and "Vd (cm/s)"')
+        df['Vd,min (cm/s)'] = df['LAI (m2/m2)'] * df['Mínimo']
+        df['Vd,max (cm/s)'] = df['LAI (m2/m2)'] * df['Máximo']
+        df['Vd (cm/s)'] = df['LAI (m2/m2)'] * df['Promedio']
+
+        st.dataframe(df)
