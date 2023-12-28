@@ -34,5 +34,5 @@ with st.sidebar:
     st.write('Porcentaje de superficie cubierta: ', tc, "%")
 
 col1, col2 = st.columns(2)
-col1.metric("Leaf area index", lai, "m2/m2")
-col2.metric("Superficie Cubierta" , tc)
+col1.metric("Leaf area index", lai, "m^{2}/m^{2}")
+col2.metric("Superficie Cubierta" , f"{tc}%")
