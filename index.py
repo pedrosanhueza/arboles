@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from openpyxl import load_workbook
 
 sample_data = {
     'Fecha': ['1/1/22 0:00', '1/1/22 1:00', '1/1/22 2:00'],
@@ -52,12 +53,28 @@ df[df.columns[2]] = df[df.columns[2]].apply(lambda x: x.replace(",","."))
 
 df[df.columns[2]] = df[df.columns[2]].astype(float)
 
-    # Upload Excel file through Streamlit
-uploaded_file = st.file_uploader("Choose an Excel file", type=["xlsx"], sheet_name= "Planilla I-tree Candelaria")
+
+def read_excel(file):
+    df = pd.DataFrame()
+    try:
+        with pd.ExcelFile(file) as xls:
+            sheet_names = xls.sheet_names
+            sheet = st.selectbox("Select Sheet", sheet_names)
+            df = pd.read_excel(file, sheet_name=sheet)
+    except Exception as e:
+        st.error(f"Error reading Excel file: {e}")
+    return df
+
+
+st.title("Excel File Reader")
+
+uploaded_file = st.file_uploader("Choose an Excel file", type=["xlsx", "xls"])
 
 if uploaded_file is not None:
-    # Read Excel file into a DataFrame
-    df = pd.read_excel(uploaded_file, engine='openpyxl')
+    df = read_excel(uploaded_file)
+    if not df.empty:
+        st.dataframe(df)
+    else:
+        st.warning("Selected sheet is empty or could not be loaded.")
 
-    # Display the DataFrame
-    st.dataframe(df)
+st.table(df)
