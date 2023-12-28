@@ -96,5 +96,7 @@ if uploaded_file:
         resuspension['At min (g/m2*h)'] = resuspension['At min (g/m2*h)'].shift(1) + resuspension['fmin,t (g/m2*h)'] - resuspension['Rmin (g/m2*h)']
         resuspension['Rmax (g/m2*h)']   = ( resuspension['At max (g/m2*h)'].shift(1) + resuspension['fmax,t (g/m2*h)'] ) * resuspension['% Resuspensión'] / 100
         resuspension['At max (g/m2*h)'] = resuspension['At max (g/m2*h)'].shift(1) + resuspension['fmax,t (g/m2*h)'] - resuspension['Rmax (g/m2*h)']
+        resuspension['Rt (g/m2*h)']     = ( resuspension['At (g/m2*h)'].shift(1) + resuspension['ft (g/m2*h)'] ) * resuspension['% Resuspensión'] / 100
+        resuspension['At (g/m2*h)']     = resuspension['At (g/m2*h)'].shift(1) + resuspension['ft (g/m2*h)'] - resuspension['Rt (g/m2*h)']
 
         st.dataframe(resuspension.style.format(precision=12))
