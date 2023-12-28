@@ -10,3 +10,6 @@ except:
             df = pd.read_excel(uploadedFile)
     except:      
             df=pd.DataFrame()
+
+if df:
+    st.table(df)
