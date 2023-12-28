@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
 
-uploaded_files = st.file_uploader("Choose a CSV file")
+uploadedFile = st.file_uploader("fileUploadLabel", type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
 
-if uploaded_files:
-    
-    df = pd.read_excel(uploaded_files)
+try:
+    df=pd.read_csv(uploadedFile, error_bad_lines=True, warn_bad_lines=False)
+except:
+    try:
+            df = pd.read_excel(uploadedFile)
+    except:      
+            df=pd.DataFrame()
