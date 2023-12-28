@@ -56,3 +56,7 @@ if uploaded_file:
         st.write("Step 4: Merged tables")
         df = pd.merge(df, reference_table, on='Velocidad del viento (m/s)', how='left')
         st.dataframe(df)
+
+        st.write("Step 5: Add LAI column")
+        df['LAI (m2/m2)'] = lai
+        st.dataframe(df)
