@@ -14,13 +14,9 @@ st.title("Planilla I-tree Candelaria")
 
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
-col1, col2 = st.columns(2)
-
-with col1:
+with st.sidebar:
 
     lai = st.text_input("Leaf area index (LAI)👇","1.5")
-
-with col2:
 
     superficie = st.text_input("Porcentage de la superficie cubierta con la vegetacion👇","5.0")
 
