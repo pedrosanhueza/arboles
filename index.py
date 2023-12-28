@@ -93,3 +93,4 @@ if uploaded_file:
         resuspension['Rt (g/m2*h)']     = 0
         
         resuspension['Rmin (g/m2*h)']   = ( resuspension['At min (g/m2*h)'].shift(1) + resuspension['fmin,t (g/m2*h)'] ) * resuspension['% Resuspensión'] / 100
+        resuspension['At min (g/m2*h)'] = resuspension['At min (g/m2*h)'].shift(1) + resuspension['fmin,t (g/m2*h)'] - resuspension['Rmin (g/m2*h)']
