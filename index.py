@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 
-uploaded_file = st.file_uploader("Upload a file", type=['csv', 'xlsx'])
+st.title("I-tree Candelaria")
+
+uploaded_file = st.file_uploader("Subir archivo", type=['csv', 'xlsx'])
 
 if uploaded_file:
 
