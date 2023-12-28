@@ -54,5 +54,5 @@ if uploaded_file:
         st.dataframe(reference_table)
 
         st.write("Step 4: Merged tables")
-        df = pd.merge(df, table1, on='Velocidad del viento (m/s)', how='left')
+        df = pd.merge(df, reference_table, on='Velocidad del viento (m/s)', how='left')
         st.dataframe(df)
