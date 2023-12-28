@@ -1,27 +1,25 @@
 import streamlit as st
 import pandas as pd
-from io import BytesIO
 
-st.title("Excel File Reader")
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-    # To read file as bytes:
-    bytes_data = uploaded_file.getvalue()
-    st.write(bytes_data)
-
-    # To convert to a binary IO:
-    bytesio = BytesIO(uploaded_file.getvalue())
-    st.write(bytesio)
-
-    # Handle both text and binary files using Pandas functions
+def read_excel(file_path):
     try:
-        # Try reading as CSV
-        dataframe = pd.read_csv(bytesio)
-        st.dataframe(dataframe)  # Display DataFrame
-    except pd.errors.ParserError:
-        try:
-            # Try reading as Excel
-            dataframe = pd.read_excel(bytesio, engine='openpyxl')
-            st.dataframe(dataframe)  # Display DataFrame
-        except pd.errors.ParserError:
-            st.warning("Unsupported file format. Please upload a CSV or Excel file.")
+        df = pd.read_excel(file_path, engine='openpyxl')
+        return df
+    except Exception as e:
+        st.error(f"Error: {e}")
+        return None
+
+def main():
+    st.title("Excel Reader App")
+
+    uploaded_file = st.file_uploader("Choose an Excel file", type=["xlsx"])
+
+    if uploaded_file is not None:
+        st.subheader("Preview of Data:")
+        df = read_excel(uploaded_file)
+
+        if df is not None:
+            st.dataframe(df)
+
+if __name__ == "__main__":
+    main()
