@@ -70,7 +70,12 @@ if uploaded_file:
         st.write("Step 7: Change unit measure")
         st.write(df.columns)
         flux = pd.DataFrame()
-        flux['MP2,5 (g/m³)'] = df['MP2,5 (µg/m³)'] / 1000 / 1000
-        flux["Vd,min (m/s)"] = df['Vd,min (cm/s)'] / 100
+        flux['MP2,5 (g/m³)']    = df['MP2,5 (µg/m³)'] / 1000 / 1000
+        flux["Vd,min (m/s)"]    = df['Vd,min (cm/s)'] / 100
+        flux["Vd,max (m/s)"]    = df['Vd,max (cm/s)']
+        flux["Vd (m/s)"]        = df['Vd (cm/s)']
+        flux["fmin,t (g/m2*h)"] = flux['MP2,5 (g/m³)'] * flux["Vd,min (m/s)"] * 3600
+        flux["fmax,t (g/m2*h)"] = flux['MP2,5 (g/m³)'] * flux["Vd,max (m/s)"] * 3600
+        flux["ft (g/m2*h)"]     = flux['MP2,5 (g/m³)'] * flux["Vd (m/s)"] * 3600
 
         st.dataframe(flux.style.format(precision=7))
