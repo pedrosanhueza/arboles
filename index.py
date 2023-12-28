@@ -10,3 +10,9 @@ if uploadedFile:
     st.table(uploadedFile)
 
     st.write(uploadedFile)
+
+    df = pd.read_excel(uploadedFile)
+
+    st.table(df)
+
+    st.write(df)
