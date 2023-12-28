@@ -69,4 +69,6 @@ if uploaded_file:
 
         st.write("Step 7: Change unit measure")
         st.write(df.columns)
+        df['MP2,5 (g/m³)'] = df['MP2,5 (µg/m³)'] / 1000 / 1000
+        df["Vd,min (m/s)"] = df['Vd,min (cm/s)'] / 100
         st.dataframe(df)
