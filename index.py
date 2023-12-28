@@ -33,3 +33,7 @@ col1, col2 = st.columns(2)
 col1.metric("Leaf area index", lai)
 col2.metric("Superficie Cubierta" , f"{tc}%")
 
+if df:
+    
+    st.write("Raw dataframe")
+    st.dataframe(df)
