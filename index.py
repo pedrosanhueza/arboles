@@ -13,7 +13,7 @@ col1, col2 = st.columns(2)
 col1.metric("Leaf area index", lai)
 col2.metric("Superficie Cubierta" , f"{tc}%")
 
-uploaded_file = st.file_uploader("",type=['csv', 'xlsx'])
+uploaded_file = st.file_uploader("Subir archivo",type=['csv', 'xlsx'], label_visibility="hidden")
 
 if uploaded_file:
 
