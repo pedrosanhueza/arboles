@@ -65,5 +65,8 @@ if uploaded_file:
         df['Vd,min (cm/s)'] = df['LAI (m2/m2)'] * df['Mínimo']
         df['Vd,max (cm/s)'] = df['LAI (m2/m2)'] * df['Máximo']
         df['Vd (cm/s)'] = df['LAI (m2/m2)'] * df['Promedio']
+        st.dataframe(df)
 
+        st.write("Step 7: Change unit measure")
+        st.write(df.columns)
         st.dataframe(df)
