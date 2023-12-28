@@ -11,10 +11,16 @@ if uploaded_file:
 
         st.write("xlsx")
 
+        df = pd.read_excel(uploaded_file)
+
     elif fileName.endswith("csv"):
 
         st.write("csv")
     
-    df = pd.read_excel(uploaded_file)
+        df = pd.read_excel(uploaded_file)
 
+    else:
+
+        st.warning('File needs to be CSV or XLSX', icon="⚠️")
+    
     st.table(df)
