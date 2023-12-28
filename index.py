@@ -26,9 +26,10 @@ if uploaded_file:
 with st.sidebar:
     
     lai = st.number_input('Leaf area index (LAI)', value=0.15)
-    
+
     tc = st.number_input('Porcentaje de superficie cubierta', value=5)
 
 col1, col2 = st.columns(2)
 col1.metric("Leaf area index", lai)
 col2.metric("Superficie Cubierta" , f"{tc}%")
+
