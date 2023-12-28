@@ -62,25 +62,34 @@ def read_excel(file):
         st.error(f"Error reading Excel file: {e}")
     return df
 
-st.title("Excel File Reader")
-
+import streamlit as st
+import pandas as pd
 from io import StringIO
 
+st.title("Excel File Reader")
 uploaded_file = st.file_uploader("Choose a file")
-
 if uploaded_file is not None:
     # To read file as bytes:
     bytes_data = uploaded_file.getvalue()
     st.write(bytes_data)
 
-    # To convert to a string based IO:
+    # To convert to a string-based IO:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     st.write(stringio)
 
-    # To read file as string:
+    # To read file as a string:
     string_data = stringio.read()
     st.write(string_data)
 
     # Can be used wherever a "file-like" object is accepted:
-    dataframe = pd.read_csv(uploaded_file)
-    st.write(dataframe)
+
+    # Checking file type and reading into a DataFrame
+    if uploaded_file.name.endswith(('.xls', '.xlsx')):
+        dataframe = pd.read_excel(uploaded_file, engine='openpyxl')
+        st.dataframe(dataframe)  # Display DataFrame
+    elif uploaded_file.name.endswith('.csv'):
+        dataframe = pd.read_csv(uploaded_file)
+        st.dataframe(dataframe)  # Display DataFrame
+    else:
+        st.warning("Unsupported file format. Please upload a CSV or Excel file.")
+
