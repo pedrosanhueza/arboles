@@ -12,13 +12,7 @@ df = pd.DataFrame(sample_data)
 
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
-lai = st.slider(
-    "Leaf area index (LAI)",
-    min_value=0.0,
-    max_value=10.0,
-    value=0.15,
-    step=0.01  # Use a smaller step for decimal values
-)
+lai = st.text_input("Leaf area index (LAI)👇","1.5")
 
 Superfice = st.slider(
     "Porcentage de la superficie cubierta con la vegetacion",
