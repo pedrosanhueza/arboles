@@ -40,7 +40,7 @@ if uploaded_file:
 
         st.write("Step 2: Normalized data")
         if 'fecha' in df.columns:
-            # Drop the 'fecha' column
+            df.columns = map(str.lower, df.columns)
             df = df.drop('fecha', axis=1)
 
         # change column name 'velocidad'
