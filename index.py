@@ -107,7 +107,6 @@ if uploaded_file:
 
         st.write('Step 9: New calculated table "Resuspension"')
         resuspension = pd.DataFrame()
-        resuspension['Fecha']           = df['Fecha']
         resuspension['% Resuspensión']  = df['% Resuspensión']
         resuspension['fmin,t (g/m2*h)'] = flux["fmin,t (g/m2*h)"]
         resuspension['fmax,t (g/m2*h)'] = flux["fmax,t (g/m2*h)"]
