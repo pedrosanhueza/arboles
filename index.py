@@ -78,7 +78,7 @@ if uploaded_file:
         flux["ft (g/m2*h)"]     = flux['MP2,5 (g/m³)'] * flux["Vd (m/s)"] * 3600
         st.dataframe(flux.style.format(precision=7))
 
-        st.write('Step 8: New calculated table "Resuspencion"')
+        st.write('Step 8: New calculated table "Resuspension"')
         resuspension = pd.DataFrame()
         resuspension['Fecha']           = df['Fecha']
         resuspension['% Resuspensión']  = df['% Resuspensión']
