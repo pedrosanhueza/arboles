@@ -38,11 +38,38 @@ if uploaded_file:
         st.write("Step 1: Get raw data")
         st.dataframe(df)
 
-        st.write("Step 2: Round 'Velocidad viento' column")
+        st.write("Step 2: Normalized data")
+        if 'fecha' in df.columns:
+            # Drop the 'fecha' column
+            df = df.drop('fecha', axis=1)
+
+        # change column name 'velocidad'
+        substrings_to_replace_velocidad = ["vv", "viento", "velocidad", "velocidad del viento"]
+        for column in df.columns:
+            if any(substring in column.lower() for substring in substrings_to_replace_velocidad):
+                new_column_name = "Velocidad del viento (m/s)"
+                df.rename(columns={column: new_column_name}, inplace=True)
+
+        # change column name 'mp2,5'
+        substrings_to_replace_mp = ["mp", "2,5", "25"]
+        for column in df.columns:
+            if any(substring in column.lower() for substring in substrings_to_replace_mp):
+                new_column_name = "MP2,5 (µg/m³)"
+                df.rename(columns={column: new_column_name}, inplace=True)
+
+        # change column name 'altura'
+        substrings_to_replace_mp = ["mh", "altura", "mezcla"]
+        for column in df.columns:
+            if any(substring in column.lower() for substring in substrings_to_replace_mp):
+                new_column_name = "Altura de Mezcla (m)"
+                df.rename(columns={column: new_column_name}, inplace=True)
+        st.dataframe(df)
+
+        st.write("Step 3: Round 'Velocidad viento' column")
         df['Velocidad del viento (m/s)'] = df['Velocidad del viento (m/s)'].apply(lambda x: float(x.replace(",","."))).round()
         st.dataframe(df)
 
-        st.write("Step 3: Build reference table")
+        st.write("Step 4: Build reference table")
         table1 = {
             'Velocidad del viento (m/s)': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
             'Promedio': [0, 0.03, 0.09, 0.15, 0.17, 0.19, 0.2, 0.56, 0.92, 0.92, 2.11, 2.11, 2.11, 2.11],
@@ -53,21 +80,21 @@ if uploaded_file:
         reference_table = pd.DataFrame(table1)
         st.dataframe(reference_table)
 
-        st.write("Step 4: Merged tables")
+        st.write("Step 5: Merged tables")
         df = pd.merge(df, reference_table, on='Velocidad del viento (m/s)', how='left')
         st.dataframe(df)
 
-        st.write("Step 5: Add LAI column")
+        st.write("Step 6: Add LAI column")
         df['LAI (m2/m2)'] = lai
         st.dataframe(df)
 
-        st.write('Step 6: add columns "Vd,min (cm/s)" and "Vd,max (cm/s)" and "Vd (cm/s)"')
+        st.write('Step 7: add columns "Vd,min (cm/s)" and "Vd,max (cm/s)" and "Vd (cm/s)"')
         df['Vd,min (cm/s)'] = df['LAI (m2/m2)'] * df['Mínimo']
         df['Vd,max (cm/s)'] = df['LAI (m2/m2)'] * df['Máximo']
         df['Vd (cm/s)'] = df['LAI (m2/m2)'] * df['Promedio']
         st.dataframe(df)
 
-        st.write("Step 7: Change unit measure")
+        st.write("Step 8: Change unit measure")
         flux = pd.DataFrame()
         flux['MP2,5 (g/m³)']    = df['MP2,5 (µg/m³)'] / 1000 / 1000
         flux["Vd,min (m/s)"]    = df['Vd,min (cm/s)'] / 100
@@ -78,7 +105,7 @@ if uploaded_file:
         flux["ft (g/m2*h)"]     = flux['MP2,5 (g/m³)'] * flux["Vd (m/s)"] * 3600
         st.dataframe(flux.style.format(precision=7))
 
-        st.write('Step 8: New calculated table "Resuspension"')
+        st.write('Step 9: New calculated table "Resuspension"')
         resuspension = pd.DataFrame()
         resuspension['Fecha']           = df['Fecha']
         resuspension['% Resuspensión']  = df['% Resuspensión']
