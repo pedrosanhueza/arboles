@@ -134,6 +134,4 @@ if uploaded_file:
             resuspension['Rt (g/m2*h)']     = ( resuspension['At (g/m2*h)'].shift(1) + resuspension['ft (g/m2*h)'] ) * resuspension['% Resuspensión'] / 100
             resuspension['At (g/m2*h)']     = resuspension['At (g/m2*h)'].shift(1) + resuspension['ft (g/m2*h)'] - resuspension['Rt (g/m2*h)']
 
-            # st.write("Alan")
-
         st.dataframe(resuspension.style.format(precision=12))
