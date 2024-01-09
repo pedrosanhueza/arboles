@@ -6,9 +6,9 @@ from decimal import Decimal
 
 with st.sidebar:
     
-    lai = st.number_input('Leaf area index (LAI)', value=0.15)
+    lai = st.number_input('Leaf area index (LAI)', value=Decimal(0.15))
 
-    tc = st.number_input('Porcentaje de superficie cubierta', value=5)
+    tc = st.number_input('Porcentaje de superficie cubierta', value=Decimal('0.05'))
 
 col1, col2 = st.columns(2)
 col1.metric("Leaf area index", lai)
