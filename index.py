@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from decimal import Decimal
 
 st.title("I-tree Candelaria")
 
