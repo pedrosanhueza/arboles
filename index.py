@@ -127,3 +127,54 @@ if uploaded_file:
     df['% Resuspensión'],
     )
 
+    for mp25, vv, h, avg, min, max, resus in columns_zip:
+
+        vd_avg = lai * avg
+        vd_min = lai * min
+        vd_max = lai * max
+
+        mp25_g   = mp25 / 1000000
+
+        vd_avg_m = vd_avg / 100
+        vd_min_m = vd_min / 100
+        vd_max_m = vd_max / 100
+
+        f_avg = 3600 * mp25_g * vd_avg_m
+        f_min = 3600 * mp25_g * vd_min_m
+        f_max = 3600 * mp25_g * vd_max_m
+
+
+        r_avg = ( at_avg + f_avg ) * resus / 100
+        at_avg = at_avg + f_avg - r_avg
+        r_min = ( at_min + f_min ) * resus / 100
+        at_min = at_min + f_min - r_min
+        r_max = ( at_max + f_max ) * resus / 100
+        at_max = at_max + f_max - r_max
+
+        f_neto_avg = f_avg - r_avg
+        f_neto_min = f_min - r_min
+        f_neto_max = f_max - r_max
+
+        f_ugm2h_avg = f_neto_avg * 1000000
+        f_ugm2h_min = f_neto_min * 1000000
+        f_ugm2h_max = f_neto_max * 1000000
+
+        m_total = mp25 * h
+
+        i_Unit_avg = f_ugm2h_avg * 100 / m_total if f_ugm2h_avg < 1 else f_ugm2h_avg * 100 / (m_total + f_ugm2h_avg)
+        i_Unit_min = f_ugm2h_min * 100 / m_total if f_ugm2h_min < 1 else f_ugm2h_min * 100 / (m_total + f_ugm2h_min)
+        i_Unit_max = f_ugm2h_max * 100 / m_total if f_ugm2h_max < 1 else f_ugm2h_max * 100 / (m_total + f_ugm2h_max)
+
+        i_total_avg = f_ugm2h_avg * tc * 100 / (f_ugm2h_avg * tc + m_total)
+        i_total_min = f_ugm2h_min * tc * 100 / (f_ugm2h_min * tc + m_total)
+        i_total_max = f_ugm2h_max * tc * 100 / (f_ugm2h_max * tc + m_total)
+
+        change_c_avg = mp25 / (1 - i_total_avg / 100) - mp25
+        change_c_min = mp25 / (1 - i_total_min / 100) - mp25
+        change_c_max = mp25 / (1 - i_total_max / 100) - mp25
+
+        suma_change_c_avg += change_c_avg
+        suma_change_c_min += change_c_min
+        suma_change_c_max += change_c_max
+    
+    st.write(suma_change_c_avg)
