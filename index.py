@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP, getcontext
 
 # ---------------------- #
 # ------ SIDE BAR ------ #
@@ -73,5 +73,35 @@ if uploaded_file:
 
     # replace comma with dots
     df = df.applymap(lambda x: str(x).replace(',', '.'))
+
+    # convert values to decimals
+    df = df.applymap(lambda x: Decimal(x) if pd.notna(x) else x)
+
+    lai = Decimal('0.15')
+    tc = Decimal('0.05')
+
+    # round values in Velocidad del viento
+    getcontext().rounding = ROUND_HALF_UP
+    decimal_places = 0
+    def round_half_up(value):
+        return Decimal(str(value)).quantize(Decimal('1e-{0}'.format(decimal_places)))
+    # Apply the rounding function to the specified column
+    df['Velocidad del viento (m/s)'] = df['Velocidad del viento (m/s)'].apply(lambda x: round_half_up(x))
+
+    table1 = {
+        'Velocidad del viento (m/s)': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+        'Promedio': ['0', '0.03', '0.09', '0.15', '0.17', '0.19', '0.2', '0.56', '0.92', '0.92', '2.11', '2.11', '2.11', '2.11'],
+        'Mínimo': ['0', '0.006', '0.012', '0.018', '0.022', '0.025', '0.029', '0.056', '0.082', '0.082', '0.57', '0.57', '0.57', '0.57'],
+        'Máximo': ['0', '0.042', '0.163', '0.285', '0.349', '0.414', '0.478', '1.506', '2.534', '2.534', '2.534', '2.534', '2.534', '2.534'],
+        '% Resuspensión': ['0', '1.5', '3', '4.5', '6', '7.5', '9', '10', '11', '12', '13', '16', '20', '23']
+    }
+
+    reference_table = pd.DataFrame(table1).applymap(lambda x: Decimal(x) if pd.notna(x) else x)
+
+    df = pd.merge(df, reference_table, on='Velocidad del viento (m/s)', how='left')
+
+    df['Vd (cm/s)']     = lai * df['Promedio']
+    df['Vd,min (cm/s)'] = lai * df['Mínimo']
+    df['Vd,max (cm/s)'] = lai * df['Máximo']
 
     st.dataframe(df)
