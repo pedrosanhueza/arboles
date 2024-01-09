@@ -75,7 +75,7 @@ if uploaded_file:
     df = df.applymap(lambda x: str(x).replace(',', '.'))
 
     # convert values to decimals
-    df = df.applymap(lambda x: Decimal(x) if pd.notna(x) else x)
+    df = df.apply(lambda x: Decimal(x) if pd.notna(x) else x)
 
     lai = Decimal('0.15')
     tc = Decimal('0.05')
