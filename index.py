@@ -39,6 +39,7 @@ if uploaded_file:
         st.dataframe(df)
 
         st.write("Step 2: Normalized data")
+        # drop 'fecha' column
         df.columns = map(str.lower, df.columns)
         if 'fecha' in df.columns:
             df = df.drop('fecha', axis=1)
@@ -93,6 +94,10 @@ if uploaded_file:
         df['Vd,max (cm/s)'] = df['LAI (m2/m2)'] * df['Máximo']
         df['Vd (cm/s)'] = df['LAI (m2/m2)'] * df['Promedio']
         st.dataframe(df)
+
+        # st.write("Step 8-A: Increase temporaly by 1000000")
+        # df = df * 1000000
+        # st.dataframe(df)
 
         st.write("Step 8: Change unit measure")
         flux = pd.DataFrame()
