@@ -42,7 +42,18 @@ if uploaded_file:
 # ------------------------- #
 # ------ CALCULATIONS ----- #
 # ------------------------- #
-        
+
+at_min = Decimal('0')
+at_max = Decimal('0')
+at_avg = Decimal('0')
+r_min  = Decimal('0')
+r_max  = Decimal('0')
+r_avg  = Decimal('0')
+
+suma_change_c_avg = 0
+suma_change_c_min = 0
+suma_change_c_max = 0
+
 if uploaded_file:
     
     # drop 'fecha' column
@@ -105,3 +116,14 @@ if uploaded_file:
     df['Vd,max (cm/s)'] = lai * df['Máximo']
 
     st.dataframe(df)
+
+    columns_zip = zip(
+    df['MP2,5 (µg/m³)'],
+    df['Velocidad del viento (m/s)'],
+    df['Altura de Mezcla (m)'],
+    df['Promedio'],
+    df['Mínimo'],
+    df['Máximo'],
+    df['% Resuspensión'],
+    )
+
