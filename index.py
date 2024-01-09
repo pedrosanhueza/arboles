@@ -36,4 +36,6 @@ if uploaded_file:
 
         st.warning('Error in file upload', icon="⚠️")
 
-st.dataframe(df)
+if uploaded_file:
+    
+    st.dataframe(df)
