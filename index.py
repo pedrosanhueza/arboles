@@ -161,6 +161,8 @@ if uploaded_file:
 
         m_total = mp25 * h
 
+        st.write(m_total)
+
         i_Unit_avg = f_ugm2h_avg * 100 / m_total if f_ugm2h_avg < 1 else f_ugm2h_avg * 100 / (m_total + f_ugm2h_avg)
         i_Unit_min = f_ugm2h_min * 100 / m_total if f_ugm2h_min < 1 else f_ugm2h_min * 100 / (m_total + f_ugm2h_min)
         i_Unit_max = f_ugm2h_max * 100 / m_total if f_ugm2h_max < 1 else f_ugm2h_max * 100 / (m_total + f_ugm2h_max)
