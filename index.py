@@ -72,10 +72,10 @@ if uploaded_file:
             df.rename(columns={column: new_column_name}, inplace=True)
 
     # replace comma with dots
-    df = df.apply(lambda x: str(x).replace(',', '.'))
+    df = df.applymap(lambda x: str(x).replace(',', '.'))
 
     # convert values to decimals
-    df = df.apply(lambda x: Decimal(x) if pd.notna(x) else x)
+    df = df.applymap(lambda x: Decimal(x) if pd.notna(x) else x)
 
     lai = Decimal('0.15')
     tc = Decimal('0.05')
@@ -96,7 +96,7 @@ if uploaded_file:
         '% Resuspensión': ['0', '1.5', '3', '4.5', '6', '7.5', '9', '10', '11', '12', '13', '16', '20', '23']
     }
 
-    reference_table = pd.DataFrame(table1).apply(lambda x: Decimal(x) if pd.notna(x) else x)
+    reference_table = pd.DataFrame(table1).applymap(lambda x: Decimal(x) if pd.notna(x) else x)
 
     df = pd.merge(df, reference_table, on='Velocidad del viento (m/s)', how='left')
 
