@@ -179,7 +179,7 @@ try:
             suma_change_c_max += change_c_max
         
         st.markdown('''
-        <br><br>
+        <br>
         <center>
             <h3>
                 ΔC total (ug/m3*h)
