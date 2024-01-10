@@ -215,7 +215,7 @@ try:
         st.download_button(
             label="Download data as CSV",
             data=csv,
-            file_name='I-Tree.csv',
+            file_name='Output I-Tree.csv',
             mime='text/csv',
         )
 
