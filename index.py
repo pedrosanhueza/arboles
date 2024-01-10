@@ -71,9 +71,9 @@ if uploaded_file:
             df.rename(columns={column: new_column_name}, inplace=True)
 
     # change column name 'altura'
-    substrings_to_replace_mp = ["mh", "altura", "mezcla"]
+    substrings_to_replace_altura = ["mh", "altura", "mezcla"]
     for column in df.columns:
-        if any(substring in column.lower() for substring in substrings_to_replace_mp):
+        if any(substring in column.lower() for substring in substrings_to_replace_altura):
             new_column_name = "Altura de Mezcla (m)"
             df.rename(columns={column: new_column_name}, inplace=True)
 
@@ -178,10 +178,9 @@ if uploaded_file:
         suma_change_c_max += change_c_max
     
     st.markdown('''
-    <br>
+    <br><br>
+    <h3>ΔC total (ug/m3*h)</h3>
     ''',unsafe_allow_html=True)
-    
-    st.write('ΔC total (ug/m3*h)')
 
     suma_change_c_avg_str = str(round(suma_change_c_avg,2))
     suma_change_c_min_str = str(round(suma_change_c_min,2))
@@ -192,6 +191,6 @@ if uploaded_file:
     col2.metric("ΔC Promedio", suma_change_c_avg_str)
     col3.metric("ΔC Maximo",   suma_change_c_max_str)
 
-    with st.expander("See input data"):
+    # with st.expander("See input data"):
         
-        st.dataframe(df_display)
+    #     st.dataframe(df_display)
