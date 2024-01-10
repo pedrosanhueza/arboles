@@ -187,24 +187,6 @@ try:
         <br><br>
         </center>
         ''',unsafe_allow_html=True)
-        
-        css='''
-        [data-testid="metric-container"] {
-            width: fit-content;
-            margin: auto;
-        }
-
-        [data-testid="metric-container"] > div {
-            width: fit-content;
-            margin: auto;
-        }
-
-        [data-testid="metric-container"] label {
-            width: fit-content;
-            margin: auto;
-        }
-        '''
-        st.markdown(f'<style>{css}</style>',unsafe_allow_html=True)
 
         suma_change_c_avg_str = str(round(suma_change_c_avg,2))
         suma_change_c_min_str = str(round(suma_change_c_min,2))
