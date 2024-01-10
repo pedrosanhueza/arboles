@@ -82,6 +82,10 @@ if uploaded_file:
             new_column_name = "Altura de Mezcla (m)"
             df.rename(columns={column: new_column_name}, inplace=True)
 
+    # replace zeros for multiplication
+    df['MP2,5 (µg/m³)'].replace('0', '0.00000001', inplace=True)
+    df['Altura de Mezcla (m)'].replace('0', '0.00000001', inplace=True)
+
     # replace comma with dots
     df = df.applymap(lambda x: str(x).replace(',', '.'))
 
