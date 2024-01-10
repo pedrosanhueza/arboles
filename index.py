@@ -9,7 +9,7 @@ from decimal import Decimal, ROUND_HALF_UP, getcontext
 with st.sidebar:
     
     lai = st.number_input('Leaf area index (LAI)', value=0.15)
-    tc = st.number_input('Superficie cubierta (%)', value=0.05)
+    tc = st.number_input('Superficie cubierta (%)', value=5)
 
 # ------------------------- #
 # ------ FILE UPLOAD ------ #
@@ -171,9 +171,9 @@ try:
                 i_Unit_min = f_ugm2h_min * 100 / m_total if f_ugm2h_min < 1 else f_ugm2h_min * 100 / (m_total + f_ugm2h_min)
                 i_Unit_max = f_ugm2h_max * 100 / m_total if f_ugm2h_max < 1 else f_ugm2h_max * 100 / (m_total + f_ugm2h_max)
 
-                i_total_avg = f_ugm2h_avg * tc * 100 / (f_ugm2h_avg * tc + m_total)
-                i_total_min = f_ugm2h_min * tc * 100 / (f_ugm2h_min * tc + m_total)
-                i_total_max = f_ugm2h_max * tc * 100 / (f_ugm2h_max * tc + m_total)
+                i_total_avg = f_ugm2h_avg * tc / 100 * 100 / (f_ugm2h_avg * tc / 100 + m_total)
+                i_total_min = f_ugm2h_min * tc / 100 * 100 / (f_ugm2h_min * tc / 100 + m_total)
+                i_total_max = f_ugm2h_max * tc / 100 * 100 / (f_ugm2h_max * tc / 100 + m_total)
 
                 change_c_avg = mp25 / (1 - i_total_avg / 100) - mp25
                 change_c_min = mp25 / (1 - i_total_min / 100) - mp25
