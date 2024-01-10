@@ -24,19 +24,12 @@ col2.metric("Superficie Cubierta" , f"{tc}%")
 uploaded_file = st.file_uploader("Subir archivo",type=['csv', 'xlsx'], label_visibility="hidden")
 
 if uploaded_file:
-
     fileName = uploaded_file.name    
-
     if fileName.endswith("xlsx"):
-
         df = pd.read_excel(uploaded_file, dtype=str)
-
     elif fileName.endswith("csv"):
-
         df = pd.read_csv(uploaded_file, dtype=str)
-
     else:
-
         st.warning('Error in file upload', icon="⚠️")
 
 # ------------------------- #
@@ -92,6 +85,9 @@ if uploaded_file:
     # convert values to decimals
     df = df.applymap(lambda x: Decimal(x) if pd.notna(x) else x)
 
+    #create copy for display
+    df_display = df.copy()
+
     lai = Decimal(lai)
     tc = Decimal(tc)
 
@@ -118,8 +114,6 @@ if uploaded_file:
     df['Vd (cm/s)']     = lai * df['Promedio']
     df['Vd,min (cm/s)'] = lai * df['Mínimo']
     df['Vd,max (cm/s)'] = lai * df['Máximo']
-
-    st.dataframe(df)
 
     columns_zip = zip(
     df['MP2,5 (µg/m³)'],
@@ -181,4 +175,12 @@ if uploaded_file:
         suma_change_c_min += change_c_min
         suma_change_c_max += change_c_max
     
-    st.write(suma_change_c_avg)
+    st.write('##ΔC total (ug/m3*h)')
+    col1, col2, col3 = st.columns(3)
+    col1.metric("ΔC Minimo",   suma_change_c_avg)
+    col2.metric("ΔC Promedio", suma_change_c_avg)
+    col3.metric("ΔC Maximo",   suma_change_c_avg)
+
+    with st.expander("See input data"):
+        
+        st.dataframe(df_display)
