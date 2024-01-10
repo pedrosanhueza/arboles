@@ -175,11 +175,16 @@ if uploaded_file:
         suma_change_c_min += change_c_min
         suma_change_c_max += change_c_max
     
-    st.write('##ΔC total (ug/m3*h)')
+    st.write('ΔC total (ug/m3*h)')
+
+    suma_change_c_avg_str = str(round(suma_change_c_avg,2))
+    suma_change_c_min_str = str(round(suma_change_c_min,2))
+    suma_change_c_max_str = str(round(suma_change_c_max,2))
+
     col1, col2, col3 = st.columns(3)
-    col1.metric("ΔC Minimo",   suma_change_c_avg)
-    col2.metric("ΔC Promedio", suma_change_c_avg)
-    col3.metric("ΔC Maximo",   suma_change_c_avg)
+    col1.metric("ΔC Minimo",   suma_change_c_avg_str)
+    col2.metric("ΔC Promedio", suma_change_c_min_str)
+    col3.metric("ΔC Maximo",   suma_change_c_max_str)
 
     with st.expander("See input data"):
         
