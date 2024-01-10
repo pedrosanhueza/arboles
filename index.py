@@ -203,7 +203,7 @@ try:
             col3.metric("ΔC Maximo",   suma_change_c_max_str)
 
     with tab2:        
-        st.dataframe(df_display)
+        st.dataframe(df)
 
         @st.cache
         def convert_df(df):
