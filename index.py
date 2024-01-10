@@ -190,9 +190,9 @@ if uploaded_file:
     </center>
     ''',unsafe_allow_html=True)
 
-    suma_change_c_avg_str = str(round(suma_change_c_avg,2))
-    suma_change_c_min_str = str(round(suma_change_c_min,2))
-    suma_change_c_max_str = str(round(suma_change_c_max,2))
+    suma_change_c_avg_str = str(round(suma_change_c_avg,3))
+    suma_change_c_min_str = str(round(suma_change_c_min,3))
+    suma_change_c_max_str = str(round(suma_change_c_max,3))
 
     col1, col2, col3 = st.columns(3)
     col1.metric("ΔC Minimo",   suma_change_c_min_str)
