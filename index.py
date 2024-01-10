@@ -177,7 +177,9 @@ if uploaded_file:
         suma_change_c_min += change_c_min
         suma_change_c_max += change_c_max
     
-    st.write('')
+    st.markdown('''
+    <br>
+    ''',unsafe_allow_html=True)
     
     st.write('ΔC total (ug/m3*h)')
 
