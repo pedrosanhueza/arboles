@@ -8,8 +8,8 @@ from decimal import Decimal, ROUND_HALF_UP, getcontext
 
 with st.sidebar:
     
-    lai = st.number_input('Leaf area index (LAI)', value=0.15)
-    tc = st.number_input('Superficie cubierta (%)', value=5.00)
+    lai = st.number_input('Leaf area index (LAI)', value=0.150)
+    tc = st.number_input('Superficie cubierta (%)', value=5.000)
 
 # ------------------------- #
 # ------ FILE UPLOAD ------ #
