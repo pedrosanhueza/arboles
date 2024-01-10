@@ -51,6 +51,8 @@ suma_change_c_max = 0
 
 # try:
 if uploaded_file:
+
+    df.dropna(inplace=True)
     
     # drop 'fecha' column
     df.columns = map(str.lower, df.columns)
