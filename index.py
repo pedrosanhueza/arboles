@@ -17,8 +17,7 @@ with st.sidebar:
 
 st.markdown('''
 <center>
-<h1>I-Tree</h1>
-<h2>PM2.5</h2>
+<h1>I-Tree PM2.5</h1>
 <br>
 </center>
 '''
