@@ -205,8 +205,20 @@ try:
     with tab2:        
         st.dataframe(df_display)
 
-        st.write("Download file")
-        
+        @st.cache
+        def convert_df(df):
+            # IMPORTANT: Cache the conversion to prevent computation on every rerun
+            return df.to_csv().encode('utf-8')
+
+        csv = convert_df(df_display)
+
+        st.download_button(
+            label="Download data as CSV",
+            data=csv,
+            file_name='I-Tree.csv',
+            mime='text/csv',
+        )
+
 
 except:
     st.info('Program only accepts Excel and CSV files. Also column names ought to be descriptive. Please reach out if any concerns', icon="ℹ️")
