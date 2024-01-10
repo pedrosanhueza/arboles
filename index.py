@@ -9,7 +9,7 @@ from decimal import Decimal, ROUND_HALF_UP, getcontext
 with st.sidebar:
     
     lai = st.number_input('Leaf area index (LAI)', value=0.15)
-    tc = st.number_input('Superficie cubierta', value=0.05)
+    tc = st.number_input('Superficie cubierta (%)', value=0.05)
 
 # ------------------------- #
 # ------ FILE UPLOAD ------ #
