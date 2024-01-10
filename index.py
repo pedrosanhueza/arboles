@@ -184,6 +184,7 @@ try:
             <h3>
                 ΔC total (ug/m3*h)
             </h3>
+        <br><br>
         </center>
         ''',unsafe_allow_html=True)
 
