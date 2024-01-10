@@ -29,7 +29,7 @@ if uploaded_file:
 
     if fileName.endswith("xlsx"):
 
-        df = pd.read_excel(uploaded_file)
+        df = pd.read_excel(uploaded_file, dtype=str)
 
     elif fileName.endswith("csv"):
 
