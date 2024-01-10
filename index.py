@@ -34,10 +34,6 @@ if uploaded_file:
     else:
         st.warning('Error in file upload', icon="⚠️")
 
-col1, col2 = st.columns(2)
-col1.metric("Leaf area index", lai)
-col2.metric("Superficie Cubierta" , f"{tc}%")
-
 # ------------------------- #
 # ------ CALCULATIONS ----- #
 # ------------------------- #
