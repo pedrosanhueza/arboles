@@ -72,7 +72,7 @@ try:
                 df.rename(columns={column: new_column_name}, inplace=True)
 
         # change column name 'altura'
-        substrings_to_replace_altura = ["mh", "altura", "mezcla"]
+        substrings_to_replace_altura = ["mh", "altura", "mezcla", "mxh"]
         for column in df.columns:
             if any(substring in column.lower() for substring in substrings_to_replace_altura):
                 new_column_name = "Altura de Mezcla (m)"
