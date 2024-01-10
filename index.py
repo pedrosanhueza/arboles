@@ -15,7 +15,7 @@ with st.sidebar:
 # ------ FILE UPLOAD ------ #
 # ------------------------- #
 
-st.markdow('''
+st.markdown('''
 <center>
 <h1>I-Tree Candelaria</h1>
 </center>
