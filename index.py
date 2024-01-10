@@ -9,7 +9,7 @@ from decimal import Decimal, ROUND_HALF_UP, getcontext
 with st.sidebar:
     
     lai = st.number_input('Leaf area index (LAI)', value=0.15)
-    tc = st.number_input('Porcentaje de superficie cubierta', value=0.05)
+    tc = st.number_input('Superficie cubierta', value=0.05)
 
 # ------------------------- #
 # ------ FILE UPLOAD ------ #
@@ -210,7 +210,7 @@ try:
             # IMPORTANT: Cache the conversion to prevent computation on every rerun
             return df.to_csv().encode('utf-8')
 
-        csv = convert_df(df_display)
+        csv = convert_df(df)
 
         st.download_button(
             label="Download data as CSV",
